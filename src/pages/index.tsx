@@ -8,7 +8,7 @@ function index() {
 			<div className="relative flex-center">
 				<IconLogo className="absolute bottom-[150%] text-center w-40" />
 				<LinkButton
-					href={`/lecture`}
+					href={`/lecture/1`}
 					className="flex-center p-5 text-xl font-extrabold border-solid border border-slate-200 rounded-2xl hover:bg-slate-200"
 				>
 					Chapter 1. 코딩허브 기업과제 이해
