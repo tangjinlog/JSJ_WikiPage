@@ -33,6 +33,12 @@
 		width: 100vw;
 		height: 100vh;
 	}
+	.border-blue {
+		@apply border-solid border border-[#0101DF];
+	}
+	.border-red {
+		@apply border-solid border border-[#FF0040];
+	}
 }
 
 :root {

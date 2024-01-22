@@ -1,0 +1,52 @@
+{
+	"lecture": [
+		{
+			"id": "1",
+			"title": "a title",
+			"wiki": [
+				{
+					"id": "1",
+					"author": "정상진",
+					"title": "첫 번째 위키",
+					"content": "첫 번째 위키 본문"
+				},
+				{
+					"id": "2",
+					"author": "정상진",
+					"title": "두 번째 위키",
+					"content": "두 번째 위키 본문"
+				},
+				{
+					"id": "3",
+					"author": "정상진",
+					"title": "세 번째 위키",
+					"content": "세 번째 위키 본문"
+				}
+			]
+		},
+		{
+			"id": "2",
+			"title": "title 2",
+			"wiki": [
+				{
+					"id": "1",
+					"author": "TangJin",
+					"title": "첫 번째 위키",
+					"content": "첫 번째 위키 본문"
+				},
+				{
+					"id": "2",
+					"author": "TangJin",
+					"title": "두 번째 위키",
+					"content": "두 번째 위키 본문"
+				},
+				{
+					"id": "3",
+					"author": "TangJin",
+					"title": "세 번째 위키",
+					"content": "세 번째 위키 본문"
+				}
+			]
+		}
+	]
+}
