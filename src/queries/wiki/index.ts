@@ -1,6 +1,19 @@
 import api from 'queries/config';
 
-const getWikiList = async (page: number = 1) => {
+type WikiListTypes = {
+	id: string;
+	author: string;
+	title: string;
+	content: string;
+};
+
+export interface WikiListResponse {
+	id: string;
+	title: string;
+	wiki: WikiListTypes[];
+}
+
+const getWikiList = async (page: number = 1): Promise<WikiListResponse> => {
 	const currentUrl = window.location.pathname;
 	const defaultLenth = 5;
 	try {
@@ -14,7 +27,10 @@ const getWikiList = async (page: number = 1) => {
 };
 
 type GetWikiItemTypes = { id: string; title: string };
-const getWikiItem = async (wiki: GetWikiItemTypes) => {
+
+const getWikiItem = async (
+	wiki: GetWikiItemTypes,
+): Promise<WikiListResponse['wiki']> => {
 	const currentUrl = window.location.pathname;
 	try {
 		const res = await api.get(

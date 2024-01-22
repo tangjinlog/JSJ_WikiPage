@@ -12,10 +12,9 @@ export function WikiListItemFetcher({
 	const [page, setPage] = useState(1);
 	//TODO: ReactQuery 적용
 	const { data, status, isFetching } = useFetchWikiList(page);
-	console.log('ho');
 	useEffect(() => {
 		console.log(`data`, data);
-		setList(data);
+		data && setList(data.wiki);
 	}, [data]);
 
 	if (status === 'error') {
