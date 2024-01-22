@@ -12,7 +12,12 @@ function Sidebar() {
 	const { id, tab } = router.query;
 
 	const clickHandler = useCallback(() => {
-		isSelected ? setIsSelected(false) : setIsSelected(true);
+		if (isSelected) {
+			setIsSelected(false);
+			router.back();
+		} else {
+			setIsSelected(true);
+		}
 	}, [isSelected]);
 
 	console.log(tab);
