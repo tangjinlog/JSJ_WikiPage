@@ -1,13 +1,12 @@
 import { useRecoilState } from 'recoil';
 import { wikiSelectedState } from 'context/atom';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Wiki from '@organisms/Wiki';
 import TabMenu from '@molecules/TabMenu';
 
 function Sidebar() {
-	const [isSelected, setIsSelected] = useState(false);
-	// const [isSelected, setIsSelected] = useRecoilState(wikiSelectedState);
+	const [isSelected, setIsSelected] = useRecoilState(wikiSelectedState);
 
 	const router = useRouter();
 	const { id, tab } = router.query;
