@@ -6,7 +6,9 @@ function LectureTemp() {
 
 	return (
 		<section className="full-screen flex">
-			<div className="flex-1 bg-gray-50">player</div>
+			<div className="flex-center flex-1 p-6 bg-gray-50">
+				<div>Loading...</div>
+			</div>
 			<Sidebar />
 		</section>
 	);

@@ -21,7 +21,7 @@ function TabMenu() {
 
 	return (
 		<div
-			className={`absolute right-0 sm:w-full md:h-full md:w-20 md:right-0 sm:bottom-0 sm:w-[100vw] sm:h-14 z-10 bg-white`}
+			className={`absolute md:h-[100vh] md:w-20 md:right-0 sm:bottom-0 sm:w-[100vw] sm:h-14 z-10 bg-white`}
 		>
 			{menuItems.map((item, idx) => {
 				const [key, value] = Object.entries(item)[idx];
@@ -29,7 +29,7 @@ function TabMenu() {
 					<LinkButton
 						key={key}
 						href={`?tab=${key}`}
-						className={`absolute flex-center w-full h-full p-4 hover:bg-primary-blue hover:text-white`}
+						className={`absolute flex-center w-full h-full hover:bg-primary-blue hover:text-white`}
 						onClick={clickHandler}
 					>
 						{value}
