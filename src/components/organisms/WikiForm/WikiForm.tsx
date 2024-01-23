@@ -34,7 +34,6 @@ function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
 		initValue: editingWiki && editingWiki.content,
 		placeholder: `내용`,
 		required: true,
-		onChange: (e) => {},
 		className: ` block w-full min-h-[50vh] p-4 text-start  rounded-xl outline-none resize-none`,
 	});
 
