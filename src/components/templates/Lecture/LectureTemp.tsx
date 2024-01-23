@@ -5,8 +5,8 @@ function LectureTemp() {
 	const [isClick, setIsClick] = useState(false);
 
 	return (
-		<section className="full-screen flex bg-red-200">
-			<div className="flex-1 border-red ">player</div>
+		<section className="full-screen flex">
+			<div className="flex-1 bg-gray-50">player</div>
 			<Sidebar />
 		</section>
 	);
