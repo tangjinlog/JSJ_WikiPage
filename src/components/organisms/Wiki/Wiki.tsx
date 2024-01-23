@@ -3,7 +3,7 @@ import { WikiListContainer } from '@organisms/Container';
 
 export interface WikiContainerPropTypes {
 	isFetching: boolean;
-	setPage: React.Dispatch<React.SetStateAction<boolean>>;
+	setPage: (pageNumber: number) => React.Dispatch<React.SetStateAction<number>>;
 }
 
 function Wiki() {
