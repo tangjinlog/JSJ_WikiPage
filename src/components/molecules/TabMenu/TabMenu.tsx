@@ -3,6 +3,8 @@ import { wikiTabSelectedState } from '@context/atom';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
+import Image from 'next/image';
+import WikiLogo from '@images/wiki.png';
 
 function TabMenu() {
 	const [isSelected, setIsSelected] = useRecoilState(wikiTabSelectedState);
@@ -29,9 +31,10 @@ function TabMenu() {
 					<LinkButton
 						key={key}
 						href={`?tab=${key}`}
-						className={`absolute flex-center w-full h-full hover:bg-primary-blue hover:text-white`}
+						className={`absolute flex-center flex-col w-full h-full hover:bg-primary-blue hover:text-white`}
 						onClick={clickHandler}
 					>
+						<Image src={WikiLogo} width={30} height={30} alt="Wiki Tab Logo" />
 						{value}
 					</LinkButton>
 				);

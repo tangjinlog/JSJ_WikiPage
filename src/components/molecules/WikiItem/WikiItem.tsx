@@ -9,7 +9,7 @@ const Title = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Content = ({ children }: { children: React.ReactNode }) => {
-	return <div className="text-m">{children}</div>;
+	return <div className="text-m whitespace-pre-wrap py-4">{children}</div>;
 };
 
 const Author = ({ children }: { children: React.ReactNode }) => {
