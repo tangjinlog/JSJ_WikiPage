@@ -1,7 +1,7 @@
 import LectureTemp from '@templates/Lecture/LectureTemp';
 
-function LecturePage() {
+function WikiPage() {
 	return <LectureTemp />;
 }
 
-export default LecturePage;
+export default WikiPage;

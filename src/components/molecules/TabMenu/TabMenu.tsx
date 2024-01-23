@@ -1,11 +1,22 @@
 import LinkButton from '@atoms/LinkButton';
+import { wikiTabSelectedState } from 'context/atom';
+import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 
-type TabMenuPropTypes = {
-	id: string | string[] | undefined;
-	clickHandler: () => void;
-};
+function TabMenu() {
+	const [isSelected, setIsSelected] = useRecoilState(wikiTabSelectedState);
+	const router = useRouter();
 
-function TabMenu({ id, clickHandler }: TabMenuPropTypes) {
+	const clickHandler = useCallback(() => {
+		if (isSelected) {
+			setIsSelected(false);
+			router.back();
+		} else {
+			setIsSelected(true);
+		}
+	}, [isSelected]);
+
 	const menuItems = [{ wiki: `위키` }];
 
 	return (
@@ -14,7 +25,7 @@ function TabMenu({ id, clickHandler }: TabMenuPropTypes) {
 				const [key, value] = Object.entries(item)[idx];
 				return (
 					<div key={key} className="w-full bg-white">
-						<LinkButton href={`${id}?tab=${key}`} onClick={clickHandler}>
+						<LinkButton href={`?tab=${key}`} onClick={clickHandler}>
 							{value}
 						</LinkButton>
 					</div>
