@@ -21,7 +21,6 @@ export function WikiListItemFetcher({
 	const queryClient = new QueryClient();
 
 	useEffect(() => {
-		console.log(`data`, data);
 		data && setList(data);
 		pageInfo && setPageInfo(pageInfo);
 	}, [data]);

@@ -24,7 +24,6 @@ const getWikiList = async (page: number = 1): Promise<WikiListResponse> => {
 	const defaultLenth = 5;
 	try {
 		const res = await api.get(`/wiki?_page=${page}&_per_page=${defaultLenth}`);
-		console.log(res);
 		return res.data;
 	} catch (error) {
 		throw error;
@@ -39,7 +38,6 @@ const postWikiItem = async (wiki: WikiListTypes): Promise<WikiListResponse> => {
 			title: wiki.title,
 			content: wiki.content,
 		});
-		console.log('wiki post', res.data);
 		return res.data;
 	} catch (error) {
 		throw error;

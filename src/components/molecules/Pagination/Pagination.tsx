@@ -1,5 +1,4 @@
 import Button from '@atoms/Button';
-import LinkButton from '@atoms/LinkButton';
 import usePagination from '@utils/hooks/usePagination';
 import { wikiPageState } from '@context/atom';
 import { useRecoilValue } from 'recoil';
@@ -15,7 +14,6 @@ const Pagination = ({ setPage }: PaginationPropTypes) => {
 
 	const pages = usePagination(totalPages ?? 1, currentPage ?? 1);
 
-	console.log(currentPage);
 	return (
 		<div className="flex gap-5">
 			{pages.map((pageNumber, i) =>

@@ -1,19 +1,19 @@
 import React from 'react';
 
 const Count = ({ children }: { children: React.ReactNode }) => {
-	return <div>{children}</div>;
+	return <div className="text-sm text-gray-500">{children}</div>;
 };
 
 const Title = ({ children }: { children: React.ReactNode }) => {
-	return <h3>{children}</h3>;
+	return <h3 className="text-lg">{children}</h3>;
 };
 
 const Content = ({ children }: { children: React.ReactNode }) => {
-	return <div>{children}</div>;
+	return <div className="text-m">{children}</div>;
 };
 
 const Author = ({ children }: { children: React.ReactNode }) => {
-	return <div>{children}</div>;
+	return <div className="text-sm text-gray-500">{children}</div>;
 };
 function WikiItemMain({ children }: { children: React.ReactNode }) {
 	return <div>{children}</div>;

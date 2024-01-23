@@ -9,7 +9,6 @@ function Sidebar() {
 	const isSelected = useRecoilValue(wikiTabSelectedState);
 	const router = useRouter();
 	const { tab } = router.query;
-	console.log(tab);
 	return (
 		<div
 			className={twMerge(
@@ -25,10 +24,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
-//TODO:
-
-//auto link
-// motion styling
-// wiki crud
-// error boundary

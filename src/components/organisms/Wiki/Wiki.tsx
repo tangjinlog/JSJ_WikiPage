@@ -1,5 +1,6 @@
 import { WikiListItemFetcher } from '@organisms/Fetcher';
 import { WikiListContainer } from '@organisms/Container';
+import { ApiErrorBoundary } from '@templates/ErrorBoundary';
 
 export interface WikiContainerPropTypes {
 	isFetching: boolean;
@@ -8,11 +9,11 @@ export interface WikiContainerPropTypes {
 
 function Wiki() {
 	return (
-		<>
+		<ApiErrorBoundary>
 			<WikiListItemFetcher>
 				{(props: WikiContainerPropTypes) => <WikiListContainer {...props} />}
 			</WikiListItemFetcher>
-		</>
+		</ApiErrorBoundary>
 	);
 }
 
