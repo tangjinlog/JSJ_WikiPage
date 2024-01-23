@@ -1,11 +1,8 @@
-import { useTextInput } from '@atoms/Input';
+import { useTextInput, useTextArea } from '@atoms/Input';
 import { useRecoilValue } from 'recoil';
-import { wikiItemState } from 'context/atom';
+import { wikiItemState } from '@context/atom';
 import { usePatchWikiItem, usePostWikiItem } from '@queries/wiki/hooks';
-import type { UseInputResponse } from '@atoms/Input/Input';
-//TODO: Edit boolean -> initValue 적용
-// 기존 wiki 제목 배열들 불러와서 onChange value에서 일치하는지 검사
-// 일치한다면 annotaion 띄우고 엔터시 링크 적용.
+import Button from '@atoms/Button';
 
 interface WikiFormPropTypes {
 	id: string | string[] | undefined;
@@ -15,30 +12,29 @@ interface WikiFormPropTypes {
 }
 
 function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
-	const {
-		data: postData,
-		mutateAsync: postMutate,
-		isPending: isPostPending,
-	} = usePostWikiItem();
+	const { mutateAsync: postMutate, isPending: isPostPending } =
+		usePostWikiItem();
 
-	const {
-		data: patchData,
-		mutateAsync: patchMutate,
-		isPending: isPatchPending,
-	} = usePatchWikiItem();
+	const { mutateAsync: patchMutate, isPending: isPatchPending } =
+		usePatchWikiItem();
 
 	const editingWiki = useRecoilValue(wikiItemState);
 	const [title, titleInput, setTitle] = useTextInput({
 		initValue: editingWiki && editingWiki.title,
 		autoFocus: true,
+		placeholder: `제목`,
 		required: true,
+		className: `block w-full p-4 bg-red-200 rounded-xl outline-none`,
 	});
-	const [content, contentInput, setContent] = useTextInput({
+	const [content, textArea, setContent] = useTextArea({
 		initValue: editingWiki && editingWiki.content,
+		placeholder: `내용`,
 		required: true,
+		className: ` block w-full min-h-[50vh] p-4 text-start  rounded-xl outline-none resize-none`,
 	});
 
 	const submitHandler = () => {
+		console.log('ha');
 		if (!id) {
 			postMutate({
 				id: `${(lastIdx as number) + 1}`,
@@ -60,11 +56,13 @@ function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
 	};
 
 	return (
-		<form onSubmit={submitHandler}>
-			{titleInput as React.ReactNode}
-			{contentInput as React.ReactNode}
-			<div>
-				<button>{isEditing && !id ? `등록` : `완료`}</button>
+		<form onSubmit={submitHandler} className="flex-column gap-4">
+			{titleInput}
+			{textArea}
+			<div className="text-end">
+				<Button type="submit" className="p-4 bg-slate-300 hover:bg-slate-400">
+					{isEditing && !id ? `게시하기` : `완료`}
+				</Button>
 			</div>
 		</form>
 	);
