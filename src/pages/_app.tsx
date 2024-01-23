@@ -4,6 +4,7 @@ import {
 	QueryClient,
 	QueryClientProvider,
 } from '@tanstack/react-query';
+import { GlobalErrorBoundary } from '@templates/ErrorBoundary';
 import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
 import type { AppProps } from 'next/app';
@@ -29,7 +30,9 @@ export default function App({ Component, pageProps }: AppProps) {
 		<RecoilRoot>
 			<QueryClientProvider client={queryClient}>
 				<HydrationBoundary state={pageProps.dehydratedState}>
-					<Component {...pageProps} />
+					<GlobalErrorBoundary>
+						<Component {...pageProps} />
+					</GlobalErrorBoundary>
 				</HydrationBoundary>
 			</QueryClientProvider>
 		</RecoilRoot>
