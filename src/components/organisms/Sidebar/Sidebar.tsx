@@ -1,32 +1,28 @@
 import { useRecoilState } from 'recoil';
-import { wikiSelectedState } from 'context/atom';
+import { wikiTabSelectedState } from 'context/atom';
 import { useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Wiki from '@organisms/Wiki';
 import TabMenu from '@molecules/TabMenu';
 
 function Sidebar() {
-	const [isSelected, setIsSelected] = useRecoilState(wikiSelectedState);
-
 	const router = useRouter();
-	const { id, tab } = router.query;
-
-	const clickHandler = useCallback(() => {
-		if (isSelected) {
-			setIsSelected(false);
-			router.back();
-		} else {
-			setIsSelected(true);
-		}
-	}, [isSelected]);
+	const { tab } = router.query;
 
 	console.log(tab);
 	return (
-		<div className={`relative ${isSelected ? `w-[520px]` : `w-20`} border-red`}>
-			<TabMenu id={id} clickHandler={clickHandler} />
+		<div className={`relative w-[520px]  border-red`}>
+			<TabMenu />
 			{tab === 'wiki' ? <Wiki /> : null}
 		</div>
 	);
 }
 
 export default Sidebar;
+
+//TODO:
+
+//auto link
+// motion styling
+// wiki crud
+// error boundary

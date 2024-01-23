@@ -12,7 +12,34 @@ export const wikiListState = atom({
 	],
 });
 
-export const wikiSelectedState = atom({
-	key: `wikiSelectedState`,
+export const wikiItemState = atom({
+	key: `wikiItemState`,
+	default: {
+		id: '',
+		author: '',
+		title: '',
+		content: '',
+	},
+});
+
+export const wikiTabSelectedState = atom({
+	key: `wikiTabSelectedState`,
 	default: false,
+});
+
+type WikiPageStateTypes = {
+	totalPages: number | undefined;
+	currentPage: number | undefined;
+	hasMore: boolean | undefined;
+	lastIdx: number | undefined;
+};
+
+export const wikiPageState = atom<WikiPageStateTypes>({
+	key: `wikiPageState`,
+	default: {
+		totalPages: 0,
+		currentPage: 0,
+		hasMore: false,
+		lastIdx: 0,
+	},
 });
