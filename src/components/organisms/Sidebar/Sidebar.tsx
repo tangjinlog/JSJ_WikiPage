@@ -25,10 +25,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
-//TODO:
-
-//auto link
-// motion styling
-// wiki crud
-// error boundary

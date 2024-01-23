@@ -1,8 +1,10 @@
 import { useTextInput, useTextArea } from '@atoms/Input';
 import { useRecoilValue } from 'recoil';
-import { wikiItemState } from '@context/atom';
+import { wikiItemState, wikiListState } from '@context/atom';
 import { usePatchWikiItem, usePostWikiItem } from '@queries/wiki/hooks';
 import Button from '@atoms/Button';
+import { useEffect } from 'react';
+import { textToLink } from '@utils/textToLink';
 
 interface WikiFormPropTypes {
 	id: string | string[] | undefined;
@@ -19,6 +21,8 @@ function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
 		usePatchWikiItem();
 
 	const editingWiki = useRecoilValue(wikiItemState);
+	const wikiList = useRecoilValue(wikiListState);
+
 	const [title, titleInput, setTitle] = useTextInput({
 		initValue: editingWiki && editingWiki.title,
 		autoFocus: true,
@@ -30,11 +34,11 @@ function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
 		initValue: editingWiki && editingWiki.content,
 		placeholder: `내용`,
 		required: true,
+		onChange: (e) => {},
 		className: ` block w-full min-h-[50vh] p-4 text-start  rounded-xl outline-none resize-none`,
 	});
 
 	const submitHandler = () => {
-		console.log('ha');
 		if (!id) {
 			postMutate({
 				id: `${(lastIdx as number) + 1}`,

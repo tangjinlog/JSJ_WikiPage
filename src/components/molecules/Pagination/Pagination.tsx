@@ -1,5 +1,4 @@
 import Button from '@atoms/Button';
-import LinkButton from '@atoms/LinkButton';
 import usePagination from '@utils/hooks/usePagination';
 import { wikiPageState } from '@context/atom';
 import { useRecoilValue } from 'recoil';

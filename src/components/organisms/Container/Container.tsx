@@ -141,12 +141,12 @@ export function WikiListContainer({
 					.filter((wiki) => wiki.id === id)
 					.map((wiki) => {
 						return (
-							<div className="p-4 bg-white rounded-xl">
+							<div key={wiki.id} className="p-4 bg-white rounded-xl">
 								<WikiItem>
 									<WikiItem.Count>{`#${wiki.id}`}</WikiItem.Count>
 									<WikiItem.Title>{wiki.title}</WikiItem.Title>
-									<WikiItem.Author>{wiki.author}</WikiItem.Author>
 									<WikiItem.Content>{wiki.content}</WikiItem.Content>
+									<WikiItem.Author>{wiki.author}</WikiItem.Author>
 								</WikiItem>
 							</div>
 						);
