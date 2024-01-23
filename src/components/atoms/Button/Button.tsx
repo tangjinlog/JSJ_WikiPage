@@ -17,6 +17,7 @@ function Button({ children, ...props }: ButtonPropTypes) {
 			{...props}
 			type="button"
 			className={`flex-center border-none rounded-lg cursor-pointer
+				${props.className}
         ${props.primary ? buttonStyle.primary : ''}
         ${props.size ? sizes[props.size] : ''}
       `}
