@@ -23,6 +23,7 @@
 			"@templates/*": ["./components/templates/*"],
 			"@pages/*": ["./pages/*"],
 			"@queries/*": ["./queries/*"],
+			"@context/*": ["./context/*"],
 			"@styles/*": ["./styles/*"],
 			"@utils/*": ["./utils/*"],
 		},
