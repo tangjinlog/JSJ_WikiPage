@@ -14,7 +14,6 @@ const Pagination = ({ setPage }: PaginationPropTypes) => {
 
 	const pages = usePagination(totalPages ?? 1, currentPage ?? 1);
 
-	console.log(currentPage);
 	return (
 		<div className="flex gap-5">
 			{pages.map((pageNumber, i) =>

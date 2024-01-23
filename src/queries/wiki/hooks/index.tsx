@@ -20,8 +20,6 @@ export const useFetchWikiList = (page: number = 1) => {
 		lastIdx: data && data.items,
 	};
 
-	console.log(pageInfo);
-	console.log(data);
 	return {
 		data: data?.data.slice(0, 5),
 		status,
