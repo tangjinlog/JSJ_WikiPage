@@ -1,6 +1,6 @@
 import { useFetchWikiList } from '@queries/wiki/hooks';
 import { useEffect, useState } from 'react';
-import { wikiListState, wikiPageState } from 'context/atom';
+import { wikiListState, wikiPageState } from '@context/atom';
 import { useSetRecoilState } from 'recoil';
 import { QueryClient } from '@tanstack/react-query';
 import { wikiKey } from '@queries/constants';

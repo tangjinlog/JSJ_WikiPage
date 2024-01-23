@@ -1,3 +1,4 @@
+import { twMerge } from 'tailwind-merge';
 interface ButtonPropTypes
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode;
@@ -15,12 +16,12 @@ function Button({ children, ...props }: ButtonPropTypes) {
 	return (
 		<button
 			{...props}
-			type="button"
-			className={`flex-center border-none rounded-lg cursor-pointer
-				${props.className}
-        ${props.primary ? buttonStyle.primary : ''}
-        ${props.size ? sizes[props.size] : ''}
-      `}
+			className={twMerge(
+				`border-none rounded-lg cursor-pointer`,
+				`${props.className}`,
+				`${props.primary ? buttonStyle.primary : ''}`,
+				`${props.size ? sizes[props.size] : ''}`,
+			)}
 		>
 			{children}
 		</button>
