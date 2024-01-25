@@ -58,8 +58,32 @@ yarn server
 
 768px 아래로 viewport가 줄어들면, `tab`바 위치가 아래로 변경되도록 반응형으로 설계했습니다.
 
-<img width="300" alt="image" src="https://github.com/tangjinlog/JSJ_WikiPage/assets/96574345/da7f4b3f-a571-488b-9a08-e8fb414d13ca">(json-server를 끄면 볼 수 있습니다)
 
+
+<p align="left">
+<img width="400" alt="image" src="https://github.com/tangjinlog/JSJ_WikiPage/assets/96574345/209daf04-c7db-4137-9fac-ab93516c7d83">
+<img width="400" alt="image" src="https://github.com/tangjinlog/JSJ_WikiPage/assets/96574345/2905eeb3-72b1-4ca2-b376-aae7d8607eb1">
+</p>
+
+사용자가 실수로 위키 작성중, 페이지를 이탈하는 상황을 방지하기위해, `Confirm Modal`을 추가했습니다.<br>추가로, 작성중인 상태에서 새로고침시에도 한번 더 확인하도록 구현했습니다.
+
+#### 컨펌 모달 전략
+
+기본적으로 `useRouteControl` 훅을 사용하는 path에서 다른 페이지로 routing 시도할 경우에 띄워집니다.<br>
+`useKeyDown` 훅이 **Esc** 키를 감지해서 사용자는 모달을 **Esc** 키를 눌러 닫을 수 있습니다. 
+
+- 모달 생성 시나리오
+
+  - `/wiki?tab=wiki&create=true` 페이지에서 사용자가 한 글자라도 입력했을 경우(위키 제목, 위키 내용 둘다 해당)
+  - `/wiki?tab=wiki&id=위키번호` 페이지에서 수정 중인 경우(위키 생성과 다르게 위키 제목, 위키 내용이 둘다 빈칸이여도 모달 생성)
+
+- 모달 방지 시나리오
+  - `/wiki?tab=wiki&create=true` 페이지에서 제목, 내용이 둘 다 빈칸일 경우
+
+
+#### ErrorBoundary
+
+<img width="300" alt="image" src="https://github.com/tangjinlog/JSJ_WikiPage/assets/96574345/da7f4b3f-a571-488b-9a08-e8fb414d13ca">(json-server를 끄면 볼 수 있습니다)
 
 컴포넌트 가장 바깥에 둔 `GlobalErrorBoundary` 와 각 api 요청에 대한 책임만 가지는 Fetcher 컴포넌트를 감싸는 `ApiErrorBoundary`를 두어 에러를 핸들링함으로써 앱의 안정성을 높혔습니다.
 
