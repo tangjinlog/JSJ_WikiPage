@@ -27,6 +27,11 @@ export const wikiTabSelectedState = atom({
 	default: false,
 });
 
+export const wikiFormContentState = atom({
+	key: `wikiFormContentState`,
+	default: true,
+});
+
 type WikiPageStateTypes = {
 	totalPages: number | undefined;
 	currentPage: number | undefined;
