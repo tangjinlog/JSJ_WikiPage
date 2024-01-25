@@ -3,7 +3,7 @@
 안녕하세요! 이번 코딩허브의 기업 과제를 진행했습니다. 열심히 만들었으니 잘 부탁 드립니다 😃
 
 ![GitHub issues](https://img.shields.io/github/issues/tangjinlog/JSJ_WikiPage?color=limegreen)
-<img src="https://img.shields.io/badge/commits-56-3" />
+<img src="https://img.shields.io/badge/commits-59-3" />
 
 ## Stack
 <p align="left">
