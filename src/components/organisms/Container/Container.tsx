@@ -17,7 +17,7 @@ import Loading from '@molecules/Loading';
 import type { WikiContainerPropTypes } from '@organisms/Wiki/Wiki';
 import Button from '@atoms/Button';
 import WikiForm from '@organisms/WikiForm';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import LinkButton from '@atoms/LinkButton';
@@ -26,17 +26,15 @@ export function WikiListContainer({
 	isFetching,
 	setPage,
 }: WikiContainerPropTypes) {
+	const router = useRouter();
+	const { id } = router.query;
+	const setWikiItem = useSetRecoilState(wikiItemState(id));
+	const resetWikiItem = useResetRecoilState(wikiItemState(id));
 	const wikiList = useRecoilValue(wikiListState);
-	const setWikiItem = useSetRecoilState(wikiItemState);
-	const resetWikiItem = useResetRecoilState(wikiItemState);
 	const pageInfo = useRecoilValue(wikiPageState);
 	const [isSelected, setIsSelected] = useRecoilState(wikiTabSelectedState);
 	const isContentEmpty = useRecoilValue(wikiFormContentState);
 	const [isEditing, setIsEditing] = useState(false);
-
-	const router = useRouter();
-
-	const { id } = router.query;
 
 	useEffect(() => {
 		if (id && wikiList) {
@@ -46,9 +44,8 @@ export function WikiListContainer({
 		return () => {
 			resetWikiItem();
 		};
-	}, [id]);
+	}, [id, wikiList]);
 
-	console.log('isEditing', isEditing);
 	return (
 		<div
 			className={`absolute flex-column gap-6 ${isSelected ? `md:left-0 md:w-[calc(100%-80px)] md:h-full md:bottom-0 sm:bottom-[56px] sm:h-[90vh]` : `md:left-[100%] sm:bottom-[-100vh]`}  p-4 bg-slate-100 sm:w-[100vw]`}
@@ -149,7 +146,7 @@ export function WikiListContainer({
 								<WikiItem>
 									<WikiItem.Count>{`#${wiki.id}`}</WikiItem.Count>
 									<WikiItem.Title>{wiki.title}</WikiItem.Title>
-									<WikiItem.Content>{wiki.content}</WikiItem.Content>
+									<WikiItem.Content content={wiki.content} />
 									<WikiItem.Author>{wiki.author}</WikiItem.Author>
 								</WikiItem>
 							</div>
