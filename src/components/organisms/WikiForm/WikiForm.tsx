@@ -1,5 +1,5 @@
-import { useTextInput, useTextArea } from '@atoms/Input';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useTextInput, useTextAreaWithAnnotation } from '@atoms/Input';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
 	wikiItemState,
 	wikiListState,
@@ -19,7 +19,6 @@ interface WikiFormPropTypes {
 }
 
 function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
-	console.log('isEditing', isEditing);
 	const isContentEmpty = useSetRecoilState(wikiFormContentState);
 	const [Modal, handleOpen, handleClose] = useModal();
 
@@ -34,7 +33,7 @@ function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
 	const { mutateAsync: patchMutate, isPending: isPatchPending } =
 		usePatchWikiItem();
 
-	const editingWiki = useRecoilValue(wikiItemState);
+	const [editingWiki, setEditingWiki] = useRecoilState(wikiItemState(id));
 	const wikiList = useRecoilValue(wikiListState);
 
 	const [title, titleInput, setTitle] = useTextInput({
@@ -44,11 +43,11 @@ function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
 		required: true,
 		className: `block w-full p-4 bg-red-200 rounded-xl outline-none`,
 	});
-	const [content, textArea, setContent] = useTextArea({
+	const [content, textArea, setContent] = useTextAreaWithAnnotation({
 		initValue: editingWiki && editingWiki.content,
 		placeholder: `내용`,
 		required: true,
-		className: ` block w-full min-h-[50vh] p-4 text-start  rounded-xl outline-none resize-none`,
+		className: ` block w-full min-h-[50vh] p-4 text-start rounded-xl outline-none resize-none`,
 	});
 
 	const { unBlockingWithCallback } = useRouteControl(handleOpen, {
@@ -64,26 +63,22 @@ function WikiForm({ id, lastIdx, isEditing, setIsEditing }: WikiFormPropTypes) {
 		}
 	}, [title, content]);
 
-	const submitHandler = () => {
-		if (!id) {
-			postMutate({
-				id: `${(lastIdx as number) + 1}`,
-				author: '정상진',
-				title: title,
-				content: content,
-			});
-		} else {
-			patchMutate({
-				id: id as string,
-				author: '정상진',
-				title: title,
-				content: content,
-			});
-		}
-		setIsEditing(false);
-		setTitle('');
-		setContent('');
-	};
+	const submitHandler = useCallback(
+		(e: React.FormEvent<HTMLFormElement>) => {
+			e.preventDefault();
+			const wiki = { author: '정상진', title, content };
+			if (!id) {
+				postMutate({ id: String((lastIdx as number) + 1), ...wiki });
+				setTitle('');
+				setContent('');
+			} else {
+				patchMutate({ id: id as string, ...wiki });
+				setEditingWiki({ id: id as string, ...wiki });
+			}
+			setIsEditing(false);
+		},
+		[isEditing, title, content],
+	);
 
 	return (
 		<>

@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, atomFamily } from 'recoil';
 
 export const wikiListState = atom({
 	key: `wikiListState`,
@@ -12,7 +12,7 @@ export const wikiListState = atom({
 	],
 });
 
-export const wikiItemState = atom({
+export const wikiItemState = atomFamily({
 	key: `wikiItemState`,
 	default: {
 		id: '',
