@@ -67,12 +67,28 @@ function useModal(): ReturnType {
 		cursor: 'pointer',
 	} as const;
 
+	//TODO: hover style 적용
+	// const buttonHoverStyle = {
+	// 	cancel: {
+	// 		':hover': {
+	// 			backgroundColor: '#3492f1',
+	// 			color: 'white',
+	// 		},
+	// 	},
+	// 	execute: {
+	// 		':hover': {
+	// 			backgroundColor: '#cf454a',
+	// 			color: 'white',
+	// 		},
+	// 	},
+	// };
+
 	const Overlay = () => {
 		return <div style={overlayStyle}></div>;
 	};
 
 	const Title = ({ children }: { children: React.ReactNode }) => {
-		return <h3>{children}</h3>;
+		return <h3 style={{ fontSize: '1.15rem' }}>{children}</h3>;
 	};
 
 	const Description = ({ children }: { children: React.ReactNode }) => {
@@ -82,7 +98,10 @@ function useModal(): ReturnType {
 	const CancelButton = ({ children }: { children: React.ReactNode }) => {
 		return (
 			<button
-				style={{ ...buttonStyle, color: '#3492f1' }}
+				style={{
+					...buttonStyle,
+					color: '#3492f1',
+				}}
 				onClick={handleClose}
 			>
 				{children}
@@ -96,7 +115,10 @@ function useModal(): ReturnType {
 	}: ExecuteButtonPropsType) => {
 		return (
 			<button
-				style={{ ...buttonStyle, color: '#cf454a' }}
+				style={{
+					...buttonStyle,
+					color: '#cf454a',
+				}}
 				onClick={() => unBlockingWithCallback()}
 			>
 				{children}
